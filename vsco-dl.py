@@ -30,7 +30,7 @@ def download(username, html):
 	    path = dir_name+fname
 
 	    urllib.request.urlretrieve(file_url, path)
-	    print("\033[92m[+] Downloaded: {}\033[0m".format(path.replace(dir_name, "")))
+	    print("\033[92m[+] Downloaded:\033[0m {}".format(path.replace(dir_name, "")))
 
 
 def main():
