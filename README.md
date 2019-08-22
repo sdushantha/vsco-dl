@@ -11,27 +11,30 @@
 
 ```bash
 # clone the repo
-$ git clone https://github.com/sdushantha/vsco-dl.git
+$ git clone https://github.com/boomaa23/vsco-dl.git
 
 # install the requirements
-$ pip3 install -r requirements.txt
+$ pip install requests
 ```
 
 ## :hammer: Usage
 ```
-usage: vsco-dl.py [-h] username pages
+usage: vsco-dl.py [-h] [--content CONTENT] username pages
 
 Download all of the images and videos from a VSCO user
 
 positional arguments:
-  username    Username of VSCO user
-  pages       Number of pages the user has
+  username           Username of VSCO user
+  pages              Number of pages the user has
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help         show this help message and exit
+  --content CONTENT  Option to download only videos (video) or photos (photo)
+
 ```
 
 ## :scroll: License
 MIT License
 
+Modifications (C) 2019 Boomaa23
 Copyright (c) 2018 Siddharth Dushantha

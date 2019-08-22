@@ -14,7 +14,7 @@ import argparse
 ERASE_LINE = '\x1b[2K'
 CURSOR_UP_ONE = '\x1b[1A'
 
-def download(username, html):
+def download(username, html, content_type):
 
 	# This is extracts the JSON data from the HTML page
 	data = re.findall('window.__PRELOADED_STATE__ = (.*?)</script>', html)[0]
@@ -39,26 +39,32 @@ def download(username, html):
 	    dir_name = username+"/"
 	    path = dir_name+fname
 
-	    urllib.request.urlretrieve(file_url, path)
+	    if (("mp4" in fname and "video" in content_type)
+                or ("jpg" in fname and "photo" in content_type)
+                or ("CONTENT" in content_type)):
+                    urllib.request.urlretrieve(file_url, path)
 
-	    # This will let me show the output on the same line
-	    print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+                    # This will let me show the output on the same line
+                    print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
 
-	    print("\033[92m✔ Downloaded:\033[0m {}".format(path.replace(dir_name, "")))
+                    print("\033[92m✔ Downloaded:\033[0m {}".format(path.replace(dir_name, "")))
 
 
 def main():
 	
 	parser = argparse.ArgumentParser(description = "Download all of the images and videos from a VSCO user")
 
-	parser.add_argument('username', action="store",
-		help="Username of VSCO user")
+	parser.add_argument('username', action="store", help="Username of VSCO user")
 
-	parser.add_argument('pages', action="store",
-    	help="Number of pages the user has",
-    	type=int)
+	parser.add_argument('pages', action="store", help="Number of pages the user has", type=int)
+
+	parser.add_argument('--content', action="store",
+                            help="Option to download only videos (video) or photos (photo)")
 
 	args = parser.parse_args()
+
+	if args.content == None:
+                args.content = "CONTENT"
 
 
 	for page in range(args.pages):
@@ -73,8 +79,8 @@ def main():
 		print("\033[92m✔ Fetched data\n\033[0m")
 		os.makedirs(args.username, exist_ok=True)
 		html = r.text
-
-		download(username=args.username, html=html)
+		
+		download(username=args.username, html=html, content_type=args.content)
 		print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE + CURSOR_UP_ONE)
 
 	print("\033[92m✔\033[0m Download is complete")
