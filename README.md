@@ -11,10 +11,10 @@
 
 ```bash
 # clone the repo
-$ git clone https://github.com/boomaa23/vsco-dl.git
+$ git clone https://github.com/sdushantha/vsco-dl.git
 
 # or download the raw Python file
-$ curl https://raw.githubusercontent.com/Boomaa23/vsco-dl/master/vsco-dl.py --output vsco-dl.py
+$ curl https://raw.githubusercontent.com/sdushantha/vsco-dl/master/vsco-dl.py --output vsco-dl.py
 
 # install the requirements
 $ pip3 install requests colorama
@@ -41,7 +41,5 @@ optional arguments:
 
 ## :scroll: License
 MIT License
-
-Modifications (C) 2019 Boomaa23
 
 Copyright (c) 2018 Siddharth Dushantha
