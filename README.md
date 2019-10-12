@@ -13,22 +13,30 @@
 # clone the repo
 $ git clone https://github.com/sdushantha/vsco-dl.git
 
+# or download the raw Python file
+$ curl https://raw.githubusercontent.com/sdushantha/vsco-dl/master/vsco-dl.py --output vsco-dl.py
+
 # install the requirements
-$ pip3 install -r requirements.txt
+$ pip3 install requests colorama
+
+# run the program using Python 3
+$ python3 vsco-dl.py ...
 ```
 
 ## :hammer: Usage
 ```
-usage: vsco-dl.py [-h] username pages
+usage: vsco-dl.py [-h] [--content CONTENT] username pages
 
 Download all of the images and videos from a VSCO user
 
 positional arguments:
-  username    Username of VSCO user
-  pages       Number of pages the user has
+  username           Username of VSCO user
+  pages              Number of pages the user has
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help         show this help message and exit
+  --content CONTENT  Option to download only videos (video) or photos (photo)
+
 ```
 
 ## :scroll: License
