@@ -83,8 +83,12 @@ def main():
                 
                 download(username=args.username, html=html, content_type=args.content)
                 print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE + CURSOR_UP_ONE)
-
-        print("\033[92m✔\033[0m Download is complete")
+	
+        if "video" in args.content and not os.listdir(args.username):
+                os.rmdir(args.username)
+                print("\033[91m✘ No videos found\033[0m")
+        else:
+                print("\033[92m✔\033[0m Download is complete")
 
 init()
 main()
